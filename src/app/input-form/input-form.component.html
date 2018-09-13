@@ -1,0 +1,70 @@
+<mat-card>
+  <mat-card-title>
+    Update Information
+  </mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form">
+      <mat-input-container>
+        <mat-select placeholder="Country" formControlName="country" required>
+            <mat-option *ngFor="let country of countries" [value]="country">
+            {{ country }}
+            </mat-option>
+        </mat-select>
+      </mat-input-container>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <mat-form-field>
+        <input matInput formControlName="baseCurrency" placeholder="Base Currency" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput formControlName="baseRate" placeholder="Base rate per hour" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput formControlName="ratePerHourCap" placeholder="Rate per hour cap" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput formControlName="sessionCap" placeholder="Session Cap" />
+      </mat-form-field>
+      <button mat-raised-button color="warn" (click)="addRecord('country')">Add</button>
+    </form>
+      <!-- <mat-input-container>
+        <input matInput placeholder="Record Name" formControlName="recordName" required>
+        <mat-error *ngIf="isFieldInvalid('recordName')">
+          Please enter name
+        </mat-error>
+      </mat-input-container>
+
+      <mat-input-container>
+        <input matInput placeholder="Record Price" formControlName="recordPrice" required>
+        <mat-error *ngIf="isFieldInvalid('recordPrice')">
+          Please enter price
+        </mat-error>
+      </mat-input-container>
+
+      <button mat-raised-button color="warn" (click)="addRecord('record')">Add</button> -->
+    
+    <!-- <table class="table table-hover">
+      <thead>
+      <tr>
+          <td>Coin Name</td>
+          <td>Coin Price</td>
+          <td colspan="2">Actions</td>
+      </tr>
+      </thead>
+    
+      <tbody>
+          <tr *ngFor="let record of records">
+              <td>{{ record.name }}</td>
+              <td>{{ record.price }}</td>
+              <td><a [routerLink]="['/edit', record._id]" class="btn btn-primary">Edit</a></td>
+              <td><button (click)="deleteRecord(record._id)"  class="btn btn-danger">Delete</button></td>
+          </tr>
+      </tbody>
+    </table> -->
+    
+  </mat-card-content>
+</mat-card>

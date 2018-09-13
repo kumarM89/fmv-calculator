@@ -1,0 +1,16 @@
+.mat-card {
+    margin: 15px 0;
+}
+
+.center {
+    text-align: center;
+}
+
+.mat-form-field {
+    padding: 0 20px;
+    width: 350px;
+}
+
+.mat-form-field-infix {
+    border-top: none !important;
+}

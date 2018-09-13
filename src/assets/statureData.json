@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Non-KOL",
+        "consensus": 0.64,
+        "minVal": 0
+    }, {
+        "name": "Local KOL",
+        "consensus": 1.00,
+        "minVal": 5
+    }, {
+        "name": "National KOL",
+        "consensus": 1.30,
+        "minVal": 11
+    }, {
+        "name": "International KOL",
+        "consensus": 4.00,
+        "minVal": 17
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Abdominal / Digestive  Surgery",
+        "segmentID": 3 
+    }, {
+        "name": "Abdominal Radiology",
+        "segmentID": 2
+    }, {
+        "name": "Accident & Emergency",
+        "segmentID": 6
+    }, {
+        "name": "Acupuncture",
+        "segmentID": 1
+    }, {
+        "name": "Acute Medicine",
+        "segmentID": 3
+    }
+]

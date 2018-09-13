@@ -1,0 +1,51 @@
+[
+    {
+        "name": "Advisory Boards and Committees:  Advisory Boards – Marketed Product Related / Ad Boards - Marketed Product Related (GFS 655450003)",
+        "prepTime": 2,
+        "serviceTime": 4
+    }, {
+        "name": "Advisory Boards and Committees: Advisory Boards – Selling Related (GFS 655199003)",
+        "prepTime": 2,
+        "serviceTime": 3
+    }, {
+        "name": "Advisory Boards and Committees: HCC/HCBI – Advisory Boards - Clinical /Data Safety Monitoring Related/ Ad Boards - Clinical (GFS 635300011)",
+        "prepTime": 0,
+        "serviceTime": 1
+    }, {
+        "name": "Advisory Boards and Committees: HCC/HCBI – Advisory Boards - Clinical /Data Safety Monitoring Related/ Data Safety Monitoring Committee  (GFS 635300011)",
+        "prepTime": 0,
+        "serviceTime": 1
+    }, {
+        "name": "Advisory Boards and Committees: HCC/HCBI – Advisory Boards - Clinical /Data Safety Monitoring Related/ Product Development (GFS 635300011)",
+        "prepTime": 4,
+        "serviceTime": 6
+    }, {
+        "name": "Advisory Boards and Committees: HCC/HCBI – Advisory Boards – Marketed Product Related / Product Evaluation (GFS 655450003)",
+        "prepTime": 8,
+        "serviceTime": 2
+    }, {
+        "name": "Advisory Boards and Committees: HCC/HCBI - Investigator Meeting (GFS 635300007)",
+        "prepTime": 4,
+        "serviceTime": 6
+    }, {
+        "name": "Contractual Arrangements: HCC/HCBI - Development of Educational Materials (GFS 655450006)",
+        "prepTime": 0,
+        "serviceTime": 0
+    }, {
+        "name": "Contractual Arrangements: HCC/HCBI - General Consulting – All other (GFS 630200007)",
+        "prepTime": 0,
+        "serviceTime": 0
+    }, {
+        "name": "Contractual Arrangements: HCC/HCBI - General Consulting – Marketing Related (GFS 655450002)",
+        "prepTime": 0,
+        "serviceTime": 0
+    }, {
+        "name": "Contractual Arrangements: HCC/HCBI – General Consulting  - Research Related (GFS 635300013)",
+        "prepTime": 0,
+        "serviceTime": 0
+    }, {
+        "name": "Contractual Arrangements: HCC/HCBI - Market Research Primary (Non-Blinded and Blinded)  (GFS 655299001)",
+        "prepTime": 0,
+        "serviceTime": 0
+    }
+]

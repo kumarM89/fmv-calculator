@@ -1,0 +1,323 @@
+<mat-card>
+  <mat-form-field style="width: 350px; padding: 0 20px">
+      <input matInput placeholder="Completed By" [(ngModel)]="CompletedBY" />
+  </mat-form-field>
+  <mat-form-field style="width: 350px; padding: 0 20px">
+      <input matInput placeholder="WWID" [(ngModel)]="WWID" />
+  </mat-form-field>
+  <mat-form-field style="width: 350px; padding: 0 20px">
+      <input matInput placeholder="Physician Name" [(ngModel)]="PhysicianName" />
+  </mat-form-field>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>KOL Assessment Worksheet:</mat-card-title>
+  <mat-card-subtitle>Table A: Enter contact details of the HCP being assessed:</mat-card-subtitle>
+  <mat-form-field style="width: 350px; padding: 0 20px">
+    <input matInput placeholder="HCP full name" [(ngModel)]="HCPName" />
+  </mat-form-field>
+  <mat-form-field style="width: 350px; padding: 0 20px">
+      <input matInput placeholder="HCP Identifier# (if applicable)" [(ngModel)]="HCPIdentifier" />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="HCP Specialty" aria-label="Specialty" [matAutocomplete]="auto" [formControl]="specialtyCtrl" [(ngModel)]="selectedSpecialty">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let specialty of filteredSpecialties | async" [value]="specialty">
+            <span>{{ specialty.name }}</span>
+        </mat-option>
+    </mat-autocomplete>
+    <span matSuffix>
+        <button mat-icon-button (click)="clearSelection()">
+            <mat-icon aria-label="icon-button with a cancel icon">cancel_presentation</mat-icon>
+        </button>
+    </span>
+  </mat-form-field>
+
+  <mat-card-subtitle>Table B: KOL Stature assessment:</mat-card-subtitle>
+  <mat-card-title>C.1. Leadership:</mat-card-title>
+  <mat-grid-list cols="4" rowHeight="70px">
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> # </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Criteria </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Select Applicable Answer </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Score </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+
+    <mat-grid-tile> 1 </mat-grid-tile>
+    <mat-grid-tile> Board member on one or more medical association(s)/society(s) </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-slide-toggle [(ngModel)]="moreThanOneAssociation" color="warn" aria-labelledby="Board member on one or more medical association(s)/society(s)"></mat-slide-toggle>
+    </mat-grid-tile>
+    <mat-grid-tile> {{ moreThanOneAssociation ? 1 : 0 }} </mat-grid-tile>
+
+    <mat-grid-tile> 2 </mat-grid-tile>
+    <mat-grid-tile> Participates regularly as an advisor to industry (e.g. strategy development, advisory boards etc) </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-slide-toggle [(ngModel)]="regularParticipation" color="warn" aria-labelledby="Participates regularly as an advisor to industry (e.g. strategy development, advisory boards etc)"></mat-slide-toggle>
+    </mat-grid-tile>
+    <mat-grid-tile> {{ regularParticipation ? 1 : 0 }} </mat-grid-tile>
+
+    <mat-grid-tile> 3 </mat-grid-tile>
+    <mat-grid-tile> Current affiliation with top institution in area of specialty as Chief or full Professor at teaching hospital or university </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-slide-toggle [(ngModel)]="currentAffiliation" color="warn" aria-labelledby="Current affiliation with top institution in area of specialty as Chief or full Professor at teaching hospital or university"></mat-slide-toggle>
+    </mat-grid-tile>
+    <mat-grid-tile> {{ currentAffiliation ? 1 : 0 }} </mat-grid-tile>
+
+    <mat-grid-tile> 4 </mat-grid-tile>
+    <mat-grid-tile> Past/current leader of a recognized society/association/agency (e.g. Regulatory body) etc </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-slide-toggle [(ngModel)]="leaderOfARecogSociety" color="warn" aria-labelledby="Past/current leader of a recognized society/association/agency (e.g. Regulatory body) etc"></mat-slide-toggle>
+    </mat-grid-tile>
+    <mat-grid-tile> {{ leaderOfARecogSociety ? 1 : 0 }} </mat-grid-tile>
+
+    <mat-grid-tile> 5 </mat-grid-tile>
+    <mat-grid-tile> Member in the last 5 years of an executive board or leadership role  in an international committee/society or professional medical association </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-slide-toggle [(ngModel)]="memberOfAnExecutiveBoard" color="warn" aria-labelledby="Member in the last 5 years of an executive board or leadership role  in an international committee/society or professional medical association"></mat-slide-toggle>
+    </mat-grid-tile>
+    <mat-grid-tile> {{ memberOfAnExecutiveBoard ? 1 : 0 }} </mat-grid-tile>
+
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile> Total Leadership Score </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile> <b> {{ moreThanOneAssociation + regularParticipation + currentAffiliation + leaderOfARecogSociety + memberOfAnExecutiveBoard }} </b> </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-card-title>C.2. Presentations:</mat-card-title>
+  <mat-grid-list cols="4" rowHeight="70px">
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> # </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Participation in domestic and/or global speaking engagements during the past 5 years </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Select Applicable Answer </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Score </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+
+    <span *ngFor="let item of presentations; let idx = index">
+      <mat-grid-tile> {{ item.id }} </mat-grid-tile>
+      <mat-grid-tile> {{ item.title }} </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-radio-button [value]="item.value" [checked]="idx === 0" color="warn" name="presentation" (change)="onPresentationChange(item)"></mat-radio-button>
+      </mat-grid-tile>
+      <mat-grid-tile> {{ item.value === selectedPresentationVal ? item.value : 0 }} </mat-grid-tile>
+    </span>
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile> Total Presentation Score </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile> <b> {{ selectedPresentationVal }} </b> </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-card-title>C.3. Publications:</mat-card-title>
+  <mat-grid-list cols="4" rowHeight="70px">
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> # </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Publications during the past 5 years </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Select Applicable Answer </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Score </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+
+    <span *ngFor="let item of publications; let idx = index">
+      <mat-grid-tile> {{ item.id }} </mat-grid-tile>
+      <mat-grid-tile> {{ item.title }} </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-radio-button [value]="item.value" [checked]="idx === 0" color="warn" name="publication" (change)="onPublicationChange(item)"></mat-radio-button>
+      </mat-grid-tile>
+      <mat-grid-tile> {{ item.value === selectedPublicationVal ? item.value : 0 }} </mat-grid-tile>
+    </span>
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile> Total Publication Score </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile> <b> {{ selectedPublicationVal }} </b> </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-card-title>C.4. Expertise:</mat-card-title>
+  <mat-grid-list cols="4" rowHeight="70px">
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> # </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Criteria </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Select Applicable Answer </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Score </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+
+    <span *ngFor="let item of expertise; let idx = index">
+      <mat-grid-tile> {{ item.id }} </mat-grid-tile>
+      <mat-grid-tile> {{ item.title }} </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-slide-toggle *ngIf="!item.hasSubMenu && !item.isSubItem" [(ngModel)]="item.expertiseVal" color="warn" aria-labelledby="item.title"></mat-slide-toggle>
+        <mat-radio-button *ngIf="item.isSubItem" [value]="item.value" color="warn" name="{{item.group}}" (change)="onExpertiseSelectChange(item)"></mat-radio-button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <span *ngIf="item.isSubItem"> {{ item.value === selectedExpertise[item.group] ? item.value : 0 }} </span>
+        <span *ngIf="!item.hasSubMenu && !item.isSubItem"> {{ item.expertiseVal ? 1 : 0 }} </span>
+      </mat-grid-tile>
+    </span>
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile> Total Expertise Score </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile> <b> {{ getExpertiseTotal() }} </b> </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>Total KOL Stature score:</mat-card-title>
+  <mat-grid-list cols="6" rowHeight="40px">
+    <mat-grid-tile> <b> C.1 </b> </mat-grid-tile>
+    <mat-grid-tile> <b> Total leadership score </b> </mat-grid-tile>
+    <mat-grid-tile> {{ moreThanOneAssociation + regularParticipation + currentAffiliation + leaderOfARecogSociety + memberOfAnExecutiveBoard }} </mat-grid-tile>
+    <mat-grid-tile colspan="3"></mat-grid-tile>
+
+    <mat-grid-tile> <b> C.2 </b> </mat-grid-tile>
+    <mat-grid-tile> <b> Total presentation score </b> </mat-grid-tile>
+    <mat-grid-tile> {{ selectedPresentationVal }} </mat-grid-tile>
+    <mat-grid-tile colspan="3"></mat-grid-tile>
+
+    <mat-grid-tile> <b> C.3 </b> </mat-grid-tile>
+    <mat-grid-tile> <b> Total publication score </b> </mat-grid-tile>
+    <mat-grid-tile> {{ selectedPublicationVal }} </mat-grid-tile>
+    <mat-grid-tile colspan="3"></mat-grid-tile>
+
+    <mat-grid-tile> <b> C.4 </b> </mat-grid-tile>
+    <mat-grid-tile> <b> Total expertise score </b> </mat-grid-tile>
+    <mat-grid-tile> {{ getExpertiseTotal() }} </mat-grid-tile>
+    <mat-grid-tile colspan="3"></mat-grid-tile>
+
+    <mat-grid-tile> </mat-grid-tile>
+    <mat-grid-tile> <b> Total score </b> </mat-grid-tile>
+    <mat-grid-tile> {{ getTotalScore() }} </mat-grid-tile>
+    <mat-grid-tile colspan="3"></mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>KOL Stature guidelines:</mat-card-title>
+  <mat-grid-list cols="2" rowHeight="40px">
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> International KOL </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> 17-19 </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> National KOL </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> 11-16 </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Local KOL </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> 5-10 </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Non-KOL </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> 0-4 </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>RESULT:</mat-card-title>
+  <mat-grid-list cols="2" rowHeight="40px">
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Total Score </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> {{ getTotalScore() }} </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> Resulting KOL Stature assessment </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> {{ getKOLStature() }} </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <br>
+  <button mat-raised-button color="warn" (click)="sendKOL()" class="right">Send KOL Assessment</button>
+</mat-card>

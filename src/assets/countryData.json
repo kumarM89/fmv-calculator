@@ -1,0 +1,43 @@
+[
+	{
+		"country": "Canada",
+		"data": {
+			"baseCurrency": "CAD",
+			"baseRate": "1000",
+			"ratePerHourCap": "NA",
+			"sessionCap": "NA"
+		}
+	}, {
+		"country": "USA",
+		"data": {
+			"baseCurrency": "USD",
+			"baseRate": "500",
+			"ratePerHourCap": "10",
+			"sessionCap": "NA"
+		}
+	}, {
+		"country": "Germany",
+		"data": {
+			"baseCurrency": "EUR",
+			"baseRate": "400",
+			"ratePerHourCap": "15",
+			"sessionCap": "NA"
+		}
+	}, {
+		"country": "India",
+		"data": {
+			"baseCurrency": "INR",
+			"baseRate": "10000",
+			"ratePerHourCap": "20",
+			"sessionCap": "NA"
+		}
+	}, {
+		"country": "UK",
+		"data": {
+			"baseCurrency": "GBP",
+			"baseRate": "400",
+			"ratePerHourCap": "12",
+			"sessionCap": "NA"
+		}
+	}
+]

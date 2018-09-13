@@ -1,0 +1,8 @@
+.logoImage {
+    height: 35px;
+    float: right;
+}
+
+.centralize {
+    justify-content: center;
+}
