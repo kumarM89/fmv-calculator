@@ -1,215 +1,245 @@
 <mat-card>
-    <mat-form-field style="width: 350px; padding: 0 20px">
-        <input matInput placeholder="Completed By" [(ngModel)]="CompletedBY" />
-    </mat-form-field>
-    <mat-form-field style="width: 350px; padding: 0 20px">
-        <input matInput placeholder="WWID" [(ngModel)]="WWID" />
-    </mat-form-field>
-    <mat-form-field style="width: 350px; padding: 0 20px">
-        <input matInput type="email" placeholder="Reference Number/Event Title (optional)" [(ngModel)]="RefNumber" />
-    </mat-form-field>
+  <mat-form-field style="width: 350px; padding: 0 20px">
+    <input matInput placeholder="Completed By" [(ngModel)]="CompletedBY" />
+  </mat-form-field>
+  <mat-form-field style="width: 350px; padding: 0 20px">
+    <input matInput placeholder="WWID" [(ngModel)]="WWID" />
+  </mat-form-field>
+  <mat-form-field style="width: 350px; padding: 0 20px">
+    <input matInput type="email" placeholder="Reference Number/Event Title (optional)" [(ngModel)]="RefNumber" />
+  </mat-form-field>
 </mat-card>
 
 <mat-card>
-    <mat-card-title>Calculation Inputs:</mat-card-title>
-    <mat-card-subtitle>Caution: please check the applicable ground rules</mat-card-subtitle>
-    <mat-form-field>
-        <input matInput placeholder="Base Currency" [(value)]="baseCurrency" disabled />
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput placeholder="Base rate per hour" [(value)]="baseRate" disabled />
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput placeholder="Rate per hour cap" [(value)]="ratePerHourCap" disabled />
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput placeholder="Session cap" [(value)]="sessionCap" disabled />
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput placeholder="HCP Specialty" aria-label="Specialty" [matAutocomplete]="auto" [formControl]="specialtyCtrl" [(ngModel)]="selectedSpecialty">
-        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="itemSelected($event)" >
-            <mat-option *ngFor="let specialty of filteredSpecialties | async" [value]="specialty">
-                <span>{{ specialty.name }}</span>
-            </mat-option>
-        </mat-autocomplete>
-        <span matSuffix>
-            <button mat-icon-button (click)="clearSelection()">
-                <mat-icon aria-label="icon-button with a cancel icon">cancel_presentation</mat-icon>
-            </button>
-        </span>
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput placeholder="Specialty Multiplier" [(ngModel)]="specialtyMultiplier" disabled />
-    </mat-form-field>
+  <mat-card-title>Calculation Inputs:</mat-card-title>
+  <mat-card-subtitle>Caution: please check the applicable ground rules</mat-card-subtitle>
+  <mat-form-field>
+    <input matInput placeholder="Base Currency" [(value)]="baseCurrency" disabled />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Base rate per hour" [(value)]="baseRate" disabled />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Rate per hour cap" [(value)]="ratePerHourCap" disabled />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Session cap" [(value)]="sessionCap" disabled />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="HCP Specialty" aria-label="Specialty" [matAutocomplete]="auto" [formControl]="specialtyCtrl"
+      [(ngModel)]="selectedSpecialty">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="itemSelected($event)">
+      <mat-option *ngFor="let specialty of filteredSpecialties | async" [value]="specialty">
+        <span>{{ specialty.name }}</span>
+      </mat-option>
+    </mat-autocomplete>
+    <span matSuffix>
+      <button mat-icon-button (click)="clearSelection()">
+        <mat-icon aria-label="icon-button with a cancel icon">cancel_presentation</mat-icon>
+      </button>
+    </span>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Specialty Multiplier" [(ngModel)]="specialtyMultiplier" disabled />
+  </mat-form-field>
 
-    <mat-expansion-panel [expanded]="specialtyCtrl.value != ''" hideToggle="true">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Select the following after HCP Specialty is chosen:
-            </mat-panel-title>
-        </mat-expansion-panel-header>
+  <mat-expansion-panel [expanded]="specialtyCtrl.value != ''" hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Select the following after HCP Specialty is chosen:
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-form-field>
+      <mat-select placeholder="HCP Stature (KOL Status)" [disabled]="!specialtyCtrl.value" [(ngModel)]="selectedStature">
+        <mat-option *ngFor="let stature of statures" [value]="stature.consensus">
+          {{ stature.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Activity Type" [disabled]="!specialtyCtrl.value" [(value)]="selectedActivity">
+        <mat-option *ngFor="let activity of activities" [value]="activity">
+          {{ activity.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Travel Distance (one-way)" [disabled]="!specialtyCtrl.value" [(value)]="selectedTravelDistance">
+        <mat-option *ngFor="let distance of distanceOptions" [value]="distance.consensus">
+          {{ distance.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-slide-toggle [(ngModel)]="isRoundTrip" color="warn" [disabled]="!specialtyCtrl.value" aria-labelledby="Is travel - round trip ?">Is
+      travel - round trip ?</mat-slide-toggle>
+    <mat-form-field>
+      <input matInput placeholder="KOL Multiplier" [(value)]="selectedStature" disabled />
+    </mat-form-field>
+    <mat-grid-list cols="4" rowHeight="75px" *ngIf='specialtyCtrl.value'>
+      <mat-grid-tile> Select Hours </mat-grid-tile>
+      <mat-grid-tile> Standard Hours </mat-grid-tile>
+      <mat-grid-tile> Override Hours </mat-grid-tile>
+      <mat-grid-tile> Comments </mat-grid-tile>
+      <mat-grid-tile> Activity Type - Service time: </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field> <input matInput [value]="selectedActivity.serviceTime" disabled /> </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field> <input matInput type="number" [(ngModel)]="overriddenServiceTime" /> </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
         <mat-form-field>
-            <mat-select placeholder="HCP Stature (KOL Status)" [disabled]="!specialtyCtrl.value" [(ngModel)]="selectedStature">
-                <mat-option *ngFor="let stature of statures" [value]="stature.consensus">
-                {{ stature.name }}
-                </mat-option>
-            </mat-select>
+          <textarea matInput matTextareaAutosize placeholder="Leave a comment" [(ngModel)]="serviceTimeComments"
+            matAutosizeMaxRows="10" [required]="overriddenServiceTime > 0"></textarea>
+          <mat-error> Please provide your comments </mat-error>
         </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile> Activity Type - Prep time: </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field> <input matInput [value]="selectedActivity.prepTime" disabled /> </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field> <input matInput type="number" [(ngModel)]="overriddenPrepTime" /> </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
         <mat-form-field>
-            <mat-select placeholder="Activity Type" [disabled]="!specialtyCtrl.value" [(value)]="selectedActivity">
-                <mat-option *ngFor="let activity of activities" [value]="activity">
-                {{ activity.name }}
-                </mat-option>
-            </mat-select>
+          <textarea matInput matTextareaAutosize placeholder="Leave a comment" [(ngModel)]="prepTimeComments"
+            [required]="overriddenPrepTime > 0"></textarea>
+          <mat-error> Please provide your comments </mat-error>
         </mat-form-field>
-        <mat-form-field>
-            <mat-select placeholder="Travel Distance (one-way)" [disabled]="!specialtyCtrl.value" [(value)]="selectedTravelDistance">
-                <mat-option *ngFor="let distance of distanceOptions" [value]="distance.consensus">
-                {{ distance.name }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-slide-toggle [(ngModel)]="isRoundTrip" color="warn" [disabled]="!specialtyCtrl.value" aria-labelledby="Is travel - round trip ?">Is travel - round trip ?</mat-slide-toggle>
-        <mat-form-field>
-            <input matInput placeholder="KOL Multiplier" [(value)]="selectedStature" disabled />
-        </mat-form-field>
-        <mat-grid-list cols="4" rowHeight="75px" *ngIf='specialtyCtrl.value'>
-            <mat-grid-tile> Select Hours </mat-grid-tile>
-            <mat-grid-tile> Standard Hours </mat-grid-tile>
-            <mat-grid-tile> Override Hours </mat-grid-tile>
-            <mat-grid-tile> Comments </mat-grid-tile>
-            <mat-grid-tile> Activity Type - Service time: </mat-grid-tile>
-            <mat-grid-tile>
-                <mat-form-field> <input matInput [value]="selectedActivity.serviceTime" disabled /> </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <mat-form-field> <input matInput type="number" [(ngModel)]="overriddenServiceTime" /> </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <mat-form-field>
-                    <textarea matInput matTextareaAutosize placeholder="Leave a comment" [(ngModel)]="serviceTimeComments" matAutosizeMaxRows="10" [required]="overriddenServiceTime > 0"></textarea>
-                    <mat-error> Please provide your comments </mat-error>
-                </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile> Activity Type - Prep time: </mat-grid-tile>
-            <mat-grid-tile>
-                <mat-form-field> <input matInput [value]="selectedActivity.prepTime" disabled /> </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <mat-form-field> <input matInput type="number" [(ngModel)]="overriddenPrepTime" /> </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <mat-form-field>
-                    <textarea matInput matTextareaAutosize placeholder="Leave a comment" [(ngModel)]="prepTimeComments" [required]="overriddenPrepTime > 0"></textarea>
-                    <mat-error> Please provide your comments </mat-error>
-                </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile> Activity Location - Travel time: </mat-grid-tile>
-            <mat-grid-tile>
-                <mat-form-field> <input matInput [(value)]="isRoundTrip ? selectedTravelDistance * 2 : selectedTravelDistance" disabled /> </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile *ngIf="isRoundTrip">
-                Corresponds to {{selectedTravelDistance * 2}} hours for a round trip
-            </mat-grid-tile>
-        </mat-grid-list>
-    </mat-expansion-panel>
+      </mat-grid-tile>
+      <mat-grid-tile> Activity Location - Travel time: </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field> <input matInput [(value)]="isRoundTrip ? selectedTravelDistance * 2 : selectedTravelDistance"
+            disabled /> </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="isRoundTrip">
+        Corresponds to {{selectedTravelDistance * 2}} hours for a round trip
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-expansion-panel>
 </mat-card>
 
 <mat-expansion-panel *ngIf='specialtyCtrl.value'>
-    <mat-expansion-panel-header>
-        <mat-panel-title>
-            Calculation Details:
-        </mat-panel-title>
-    </mat-expansion-panel-header>
-    <mat-grid-list cols="4" rowHeight="50px">
-        <mat-grid-tile> Local Currency </mat-grid-tile>
-        <mat-grid-tile> <input matInput [(value)]="baseCurrency" disabled /> </mat-grid-tile>
-        <mat-grid-tile> Total Time (hrs) </mat-grid-tile>
-        <mat-grid-tile> <input matInput [value]="getTotalTime()" disabled /> </mat-grid-tile>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Calculation Details:
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-grid-list cols="4" rowHeight="50px">
+    <mat-grid-tile> Local Currency </mat-grid-tile>
+    <mat-grid-tile> <input matInput [(value)]="baseCurrency" disabled /> </mat-grid-tile>
+    <mat-grid-tile> Total Time (hrs) </mat-grid-tile>
+    <mat-grid-tile> <input matInput [value]="getTotalTime()" disabled /> </mat-grid-tile>
 
-        <mat-grid-tile> Base rate (in local currency) </mat-grid-tile>
-        <mat-grid-tile> <input matInput [(value)]="baseRate" disabled /> </mat-grid-tile>
-        <mat-grid-tile> Hourly Cap (hrs) </mat-grid-tile>
-        <mat-grid-tile> <input matInput [(ngModel)]="hourlyCap" disabled /> </mat-grid-tile>
+    <mat-grid-tile> Base rate (in local currency) </mat-grid-tile>
+    <mat-grid-tile> <input matInput [(value)]="baseRate" disabled /> </mat-grid-tile>
+    <mat-grid-tile> Hourly Cap (hrs) </mat-grid-tile>
+    <mat-grid-tile> <input matInput [(ngModel)]="hourlyCap" disabled /> </mat-grid-tile>
 
-        <mat-grid-tile> Service Time (hrs) </mat-grid-tile>
-        <mat-grid-tile> <input matInput [(value)]="overriddenServiceTime ? overriddenServiceTime : selectedActivity.serviceTime" disabled /> </mat-grid-tile>
-        <mat-grid-tile> Adj Service Time (hrs) </mat-grid-tile>
-        <mat-grid-tile> <input matInput [value]="getServiceHours()" disabled /> </mat-grid-tile>
+    <mat-grid-tile> Service Time (hrs) </mat-grid-tile>
+    <mat-grid-tile> <input matInput [(value)]="overriddenServiceTime ? overriddenServiceTime : selectedActivity.serviceTime"
+        disabled /> </mat-grid-tile>
+    <mat-grid-tile> Adj Service Time (hrs) </mat-grid-tile>
+    <mat-grid-tile> <input matInput [value]="getServiceHours()" disabled /> </mat-grid-tile>
 
-        <mat-grid-tile> Prep Time (hrs) </mat-grid-tile>
-        <mat-grid-tile> <input matInput [(value)]="overriddenPrepTime ? overriddenPrepTime : selectedActivity.prepTime" disabled /> </mat-grid-tile>
-        <mat-grid-tile> Adj Prep Time (hrs) </mat-grid-tile>
-        <mat-grid-tile> <input matInput [value]="getPrepHpours()" disabled /> </mat-grid-tile>
+    <mat-grid-tile> Prep Time (hrs) </mat-grid-tile>
+    <mat-grid-tile> <input matInput [(value)]="overriddenPrepTime ? overriddenPrepTime : selectedActivity.prepTime"
+        disabled /> </mat-grid-tile>
+    <mat-grid-tile> Adj Prep Time (hrs) </mat-grid-tile>
+    <mat-grid-tile> <input matInput [value]="getPrepHpours()" disabled /> </mat-grid-tile>
 
-        <mat-grid-tile> Travel Time (hrs) </mat-grid-tile>
-        <mat-grid-tile> <input matInput [(value)]="isRoundTrip ? selectedTravelDistance * 2 : selectedTravelDistance" disabled /> </mat-grid-tile>
-        <mat-grid-tile> Adj Travel Time (hrs) </mat-grid-tile>
-        <mat-grid-tile> <input matInput [value]="getTravelDistanceHours()" disabled /> </mat-grid-tile>
-    </mat-grid-list>
-    <mat-divider></mat-divider>
-    <mat-grid-list cols="6" rowHeight="50px">
-        <mat-grid-tile> HCP specialty multiplier </mat-grid-tile>
-        <mat-grid-tile> <input matInput [(value)]="specialtyMultiplier" disabled /> </mat-grid-tile>
-        <mat-grid-tile> HCP stature (KOL status) multiplier </mat-grid-tile>
-        <mat-grid-tile> <input matInput [value]="selectedStature" disabled /> </mat-grid-tile>
-        <mat-grid-tile> Calculated rate per hour </mat-grid-tile>
-        <mat-grid-tile> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature" disabled /> </mat-grid-tile>
+    <mat-grid-tile> Travel Time (hrs) </mat-grid-tile>
+    <mat-grid-tile> <input matInput [(value)]="isRoundTrip ? selectedTravelDistance * 2 : selectedTravelDistance"
+        disabled /> </mat-grid-tile>
+    <mat-grid-tile> Adj Travel Time (hrs) </mat-grid-tile>
+    <mat-grid-tile> <input matInput [value]="getTravelDistanceHours()" disabled /> </mat-grid-tile>
+  </mat-grid-list>
+  <mat-divider></mat-divider>
+  <mat-grid-list cols="6" rowHeight="50px">
+    <mat-grid-tile> HCP specialty multiplier </mat-grid-tile>
+    <mat-grid-tile> <input matInput [(value)]="specialtyMultiplier" disabled /> </mat-grid-tile>
+    <mat-grid-tile> HCP stature (KOL status) multiplier </mat-grid-tile>
+    <mat-grid-tile> <input matInput [value]="selectedStature" disabled /> </mat-grid-tile>
+    <mat-grid-tile> Calculated rate per hour </mat-grid-tile>
+    <mat-grid-tile> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature" disabled />
+    </mat-grid-tile>
 
-        <mat-grid-tile> Min Range </mat-grid-tile>
-        <mat-grid-tile> <input matInput [(value)]="minRange" disabled /> </mat-grid-tile>
-        <mat-grid-tile> Max Range </mat-grid-tile>
-        <mat-grid-tile> <input matInput [value]="maxRange" disabled /> </mat-grid-tile>
-        <mat-grid-tile colspan="2"></mat-grid-tile>
+    <mat-grid-tile> Min Range </mat-grid-tile>
+    <mat-grid-tile> <input matInput [(value)]="minRange" disabled /> </mat-grid-tile>
+    <mat-grid-tile> Max Range </mat-grid-tile>
+    <mat-grid-tile> <input matInput [value]="maxRange" disabled /> </mat-grid-tile>
+    <mat-grid-tile colspan="2"></mat-grid-tile>
 
-        <mat-grid-tile> </mat-grid-tile>
-        <mat-grid-tile> <b> Minimum rate </b> </mat-grid-tile>
-        <mat-grid-tile> <b> Mid </b> </mat-grid-tile>
-        <mat-grid-tile> <b> Maximum rate </b> </mat-grid-tile>
-        <mat-grid-tile colspan="2"></mat-grid-tile>
+    <mat-grid-tile> </mat-grid-tile>
+    <mat-grid-tile> <b> Minimum rate </b> </mat-grid-tile>
+    <mat-grid-tile> <b> Mid </b> </mat-grid-tile>
+    <mat-grid-tile> <b> Maximum rate </b> </mat-grid-tile>
+    <mat-grid-tile colspan="2"></mat-grid-tile>
 
-        <mat-grid-tile> FMV rate per hour range ({{baseCurrency}}) </mat-grid-tile>
-        <mat-grid-tile class="center"> <input matInput [value]="getMinVal()" disabled /> </mat-grid-tile>
-        <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature" disabled /> </mat-grid-tile>
-        <mat-grid-tile class="center"> <input matInput [value]="getMaxVal()" disabled /> </mat-grid-tile>
-    </mat-grid-list>
-    <mat-divider></mat-divider>
-    <mat-grid-list cols="4" rowHeight="50px">
-        <mat-grid-tile> </mat-grid-tile>
-        <mat-grid-tile> Minimum fee </mat-grid-tile>
-        <mat-grid-tile> Mid </mat-grid-tile>
-        <mat-grid-tile> Maximum fee </mat-grid-tile>
+    <mat-grid-tile> FMV rate per hour range ({{baseCurrency}}) </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="getMinVal()" disabled /> </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature" disabled />
+    </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal()" disabled /> </mat-grid-tile>
+  </mat-grid-list>
+  <mat-divider></mat-divider>
+  <mat-grid-list cols="4" rowHeight="50px">
+    <mat-grid-tile> </mat-grid-tile>
+    <mat-grid-tile> Minimum fee </mat-grid-tile>
+    <mat-grid-tile> Mid </mat-grid-tile>
+    <mat-grid-tile> Maximum fee </mat-grid-tile>
 
-        <mat-grid-tile> Travel Time ({{travelDistanceCalc}} hours) </mat-grid-tile>
-        <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * travelDistanceCalc" disabled /> </mat-grid-tile>
-        <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * travelDistanceCalc" disabled /> </mat-grid-tile>
-        <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * travelDistanceCalc" disabled /> </mat-grid-tile>
+    <mat-grid-tile> Travel Time ({{travelDistanceCalc}} hours) </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * travelDistanceCalc" disabled />
+    </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * travelDistanceCalc"
+        disabled /> </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * travelDistanceCalc" disabled />
+    </mat-grid-tile>
 
-        <mat-grid-tile> Service Time ({{serviceTimeCalc}} hours) </mat-grid-tile>
-        <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * serviceTimeCalc" disabled /> </mat-grid-tile>
-        <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * serviceTimeCalc" disabled /> </mat-grid-tile>
-        <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * serviceTimeCalc" disabled /> </mat-grid-tile>
+    <mat-grid-tile> Service Time ({{serviceTimeCalc}} hours) </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * serviceTimeCalc" disabled /> </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * serviceTimeCalc"
+        disabled /> </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * serviceTimeCalc" disabled /> </mat-grid-tile>
 
-        <mat-grid-tile> Prep Time ({{prepTimeCalc}} hours) </mat-grid-tile>
-        <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * prepTimeCalc" disabled /> </mat-grid-tile>
-        <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * prepTimeCalc" disabled /> </mat-grid-tile>
-        <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * prepTimeCalc" disabled /> </mat-grid-tile>
+    <mat-grid-tile> Prep Time ({{prepTimeCalc}} hours) </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * prepTimeCalc" disabled /> </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * prepTimeCalc"
+        disabled /> </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * prepTimeCalc" disabled /> </mat-grid-tile>
 
-        <mat-grid-tile> Total Cost </mat-grid-tile>
-        <mat-grid-tile class="center">
-            <mat-grid-tile-header>
-                <div class="mat-grid-list-text"> <b> {{ getMinVal() * (travelDistanceCalc + serviceTimeCalc + prepTimeCalc) }} </b> </div>
-            </mat-grid-tile-header>
-        </mat-grid-tile>
-        <mat-grid-tile class="center">
-            <mat-grid-tile-header>
-                <div class="mat-grid-list-text"> <b> {{ baseRate * specialtyMultiplier * selectedStature * (travelDistanceCalc + serviceTimeCalc + prepTimeCalc) }} </b> </div>
-            </mat-grid-tile-header>
-        </mat-grid-tile>
-        <mat-grid-tile class="center">
-            <mat-grid-tile-header>
-                <div class="mat-grid-list-text"> <b> {{ getMaxVal() * (travelDistanceCalc + serviceTimeCalc + prepTimeCalc) }} </b> </div>
-            </mat-grid-tile-header>
-        </mat-grid-tile>
-    </mat-grid-list>
+    <mat-grid-tile> Total Cost </mat-grid-tile>
+    <mat-grid-tile class="center">
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> {{ getMinVal() * (travelDistanceCalc + serviceTimeCalc + prepTimeCalc) }}
+          </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile class="center">
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> {{ baseRate * specialtyMultiplier * selectedStature * (travelDistanceCalc
+            + serviceTimeCalc + prepTimeCalc) }} </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile class="center">
+      <mat-grid-tile-header>
+        <div class="mat-grid-list-text"> <b> {{ getMaxVal() * (travelDistanceCalc + serviceTimeCalc + prepTimeCalc) }}
+          </b> </div>
+      </mat-grid-tile-header>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-slide-toggle [(ngModel)]="exceedPayment" color="warn" aria-labelledby="Will the payment exceed the upper limit of the FMV range ?">
+        Will the payment exceed the upper limit of the FMV range ?
+      </mat-slide-toggle>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <textarea matInput matTextareaAutosize placeholder="Leave a comment" [(ngModel)]="exceedPaymentComments"
+          matAutosizeMaxRows="10" [required]="exceedPayment"></textarea>
+        <mat-error> Please provide your comments </mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
 </mat-expansion-panel>
