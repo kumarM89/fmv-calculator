@@ -181,7 +181,8 @@
 
     <mat-grid-tile> FMV rate per hour range ({{baseCurrency}}) </mat-grid-tile>
     <mat-grid-tile class="center"> <input matInput [value]="getMinVal() | number:'1.0-1'" disabled /> </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature" disabled />
+    <mat-grid-tile class="center"> <input matInput [value]="(baseRate * specialtyMultiplier * selectedStature) | number:'1.0-1'"
+        disabled />
     </mat-grid-tile>
     <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() | number:'1.0-1'" disabled /> </mat-grid-tile>
   </mat-grid-list>
@@ -193,55 +194,62 @@
     <mat-grid-tile> Maximum fee </mat-grid-tile>
 
     <mat-grid-tile> Travel Time ({{travelDistanceCalc}} hours) </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * travelDistanceCalc | number:'1.0-1'" disabled />
+    <mat-grid-tile class="center"> <input matInput [value]="(getMinVal() * travelDistanceCalc) | number:'1.0-1'"
+        disabled />
     </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * travelDistanceCalc | number:'1.0-1'"
+    <mat-grid-tile class="center"> <input matInput [value]="(baseRate * specialtyMultiplier * selectedStature * travelDistanceCalc) | number:'1.0-1'"
         disabled /> </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * travelDistanceCalc | number:'1.0-1'" disabled />
+    <mat-grid-tile class="center"> <input matInput [value]="(getMaxVal() * travelDistanceCalc) | number:'1.0-1'"
+        disabled />
     </mat-grid-tile>
 
     <mat-grid-tile> Service Time ({{serviceTimeCalc}} hours) </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * serviceTimeCalc | number:'1.0-1'" disabled /> </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * serviceTimeCalc | number:'1.0-1'"
+    <mat-grid-tile class="center"> <input matInput [value]="(getMinVal() * serviceTimeCalc) | number:'1.0-1'" disabled />
+    </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="(baseRate * specialtyMultiplier * selectedStature * serviceTimeCalc) | number:'1.0-1'"
         disabled /> </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * serviceTimeCalc | number:'1.0-1'" disabled /> </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="(getMaxVal() * serviceTimeCalc) | number:'1.0-1'" disabled />
+    </mat-grid-tile>
 
     <mat-grid-tile> Prep Time ({{prepTimeCalc}} hours) </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * prepTimeCalc | number:'1.0-1'" disabled /> </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * prepTimeCalc | number:'1.0-1'"
+    <mat-grid-tile class="center"> <input matInput [value]="(getMinVal() * prepTimeCalc) | number:'1.0-1'" disabled />
+    </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="(baseRate * specialtyMultiplier * selectedStature * prepTimeCalc) | number:'1.0-1'"
         disabled /> </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * prepTimeCalc | number:'1.0-1'" disabled /> </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="(getMaxVal() * prepTimeCalc) | number:'1.0-1'" disabled />
+    </mat-grid-tile>
 
     <mat-grid-tile> Total Cost </mat-grid-tile>
     <mat-grid-tile class="center">
       <mat-grid-tile-header>
-        <div class="mat-grid-list-text"> <b> {{ getMinVal() * (travelDistanceCalc + serviceTimeCalc + prepTimeCalc) | number:'1.0-1' }}
+        <div class="mat-grid-list-text"> <b> {{ (getMinVal() * (travelDistanceCalc + serviceTimeCalc + prepTimeCalc)) |
+            number:'1.0-1' }}
           </b> </div>
       </mat-grid-tile-header>
     </mat-grid-tile>
     <mat-grid-tile class="center">
       <mat-grid-tile-header>
-        <div class="mat-grid-list-text"> <b> {{ baseRate * specialtyMultiplier * selectedStature * (travelDistanceCalc
-            + serviceTimeCalc + prepTimeCalc)  | number:'1.0-1'}} </b> </div>
+        <div class="mat-grid-list-text"> <b> {{ (baseRate * specialtyMultiplier * selectedStature * (travelDistanceCalc
+            + serviceTimeCalc + prepTimeCalc)) | number:'1.0-1'}} </b> </div>
       </mat-grid-tile-header>
     </mat-grid-tile>
     <mat-grid-tile class="center">
       <mat-grid-tile-header>
-        <div class="mat-grid-list-text"> <b> {{ getMaxVal() * (travelDistanceCalc + serviceTimeCalc + prepTimeCalc) | number:'1.0-1' }}
+        <div class="mat-grid-list-text"> <b> {{ (getMaxVal() * (travelDistanceCalc + serviceTimeCalc + prepTimeCalc)) |
+            number:'1.0-1' }}
           </b> </div>
       </mat-grid-tile-header>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-slide-toggle [(ngModel)]="exceedPayment" color="warn" aria-labelledby="Will the payment exceed the upper limit of the FMV range ?">
-        Will the payment exceed the upper limit of the FMV range ?
-      </mat-slide-toggle>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-form-field>
-        <textarea matInput matTextareaAutosize placeholder="Leave a comment" [(ngModel)]="exceedPaymentComments"
-          matAutosizeMaxRows="10" [required]="exceedPayment"></textarea>
-        <mat-error> Please provide your comments </mat-error>
-      </mat-form-field>
     </mat-grid-tile>
   </mat-grid-list>
 </mat-expansion-panel>
+<mat-card *ngIf='formSubmitted == true'>
+  <mat-slide-toggle [(ngModel)]="exceedPayment" color="warn" aria-labelledby="Will the payment exceed the upper limit of the FMV range ?">
+    Will the payment exceed the upper limit of the FMV range ?
+  </mat-slide-toggle>
+  <mat-form-field>
+    <textarea matInput matTextareaAutosize placeholder="Leave a comment" [(ngModel)]="exceedPaymentComments"
+      matAutosizeMaxRows="10" [required]="exceedPayment"></textarea>
+    <mat-error> Please provide your comments </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="warn" (click)="calculate()">Intiate Exception Process</button>
+</mat-card>
