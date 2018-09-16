@@ -26,8 +26,7 @@
     <input matInput placeholder="Session cap" [(value)]="sessionCap" disabled />
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="HCP Specialty" aria-label="Specialty" [matAutocomplete]="auto" [formControl]="specialtyCtrl"
-      [(ngModel)]="selectedSpecialty">
+    <input matInput placeholder="HCP Specialty" aria-label="Specialty" [matAutocomplete]="auto" [formControl]="specialtyCtrl">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="itemSelected($event)">
       <mat-option *ngFor="let specialty of filteredSpecialties | async" [value]="specialty">
         <span>{{ specialty.name }}</span>
@@ -120,7 +119,7 @@
   </mat-expansion-panel>
 </mat-card>
 
-<mat-expansion-panel *ngIf='specialtyCtrl.value'>
+<mat-expansion-panel *ngIf='specialtyCtrl.value' [expanded]="true">
   <mat-expansion-panel-header>
     <mat-panel-title>
       Calculation Details:

@@ -55,7 +55,8 @@ export class CalculatorComponent implements OnInit {
 
     this.countryData.selectedCountry.asObservable().subscribe(message => this.selectedCountry = message);
     this.countryData.kolAssessmentVal.asObservable().subscribe(message => this.selectedStature = message);
-    if(this.data != null) {
+
+    if (this.data != null) {
       this.initializeCalculator();
     }
   }
@@ -82,6 +83,12 @@ export class CalculatorComponent implements OnInit {
         map(specialty => typeof specialty === 'string' ? specialty : specialty.name),
         map(name => name ? this.filterSpecialties(name) : this.specialties.slice())
       );
+    this.countryData.kolAssessmentSpecialtyVal.asObservable().subscribe(message => {
+      this.specialtyCtrl.setValue(message);
+      var specialtyMultiplier = this.segments.filter(segment =>
+        segment.id === message.segmentID);
+      this.specialtyMultiplier = specialtyMultiplier[0].consensus;
+    });
   }
 
   clearSelection() {
@@ -99,8 +106,8 @@ export class CalculatorComponent implements OnInit {
 
   getTotalTime() {
     this.totalTime = (this.overriddenServiceTime ? this.overriddenServiceTime : this.selectedActivity.serviceTime)
-          + (this.overriddenPrepTime ? this.overriddenPrepTime : this.selectedActivity.prepTime)
-          + (this.isRoundTrip ? this.selectedTravelDistance * 2 : this.selectedTravelDistance);
+      + (this.overriddenPrepTime ? this.overriddenPrepTime : this.selectedActivity.prepTime)
+      + (this.isRoundTrip ? this.selectedTravelDistance * 2 : this.selectedTravelDistance);
     return this.totalTime;
   }
 
@@ -112,7 +119,7 @@ export class CalculatorComponent implements OnInit {
 
   getPrepHpours() {
     var prepTime = (this.overriddenPrepTime ? this.overriddenPrepTime : this.selectedActivity.prepTime);
-    this.prepTimeCalc = (prepTime <= (this.hourlyCap - this.serviceTimeCalc) ? prepTime : (this.hourlyCap - this.serviceTimeCalc)); 
+    this.prepTimeCalc = (prepTime <= (this.hourlyCap - this.serviceTimeCalc) ? prepTime : (this.hourlyCap - this.serviceTimeCalc));
     return this.prepTimeCalc;
   }
 

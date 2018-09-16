@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AuthorizationService } from '../authorization.service';
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
 
@@ -10,12 +11,18 @@ import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
+  isFirstLoad$: Observable<boolean>;
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, private authService: AuthorizationService) {
   }
 
   ngOnInit() {
-    setTimeout(() => {this.openDialog()});
+    setTimeout(() => {
+      if (this.authService.firstLoad.getValue()) {
+        this.openDialog();
+        this.authService.firstLoad.next(false);
+      }
+    });
   }
 
   openDialog() {

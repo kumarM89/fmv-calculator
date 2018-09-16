@@ -20,7 +20,7 @@
       <input matInput placeholder="HCP Identifier# (if applicable)" [(ngModel)]="HCPIdentifier" />
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="HCP Specialty" aria-label="Specialty" [matAutocomplete]="auto" [formControl]="specialtyCtrl" [(ngModel)]="selectedSpecialty">
+    <input matInput placeholder="HCP Specialty" aria-label="Specialty" [matAutocomplete]="auto" [formControl]="specialtyCtrl">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let specialty of filteredSpecialties | async" [value]="specialty">
             <span>{{ specialty.name }}</span>
@@ -271,7 +271,7 @@
 
     <mat-grid-tile>
       <mat-grid-tile-header>
-        <div class="mat-grid-list-text"> <b> Local KOL </b> </div>
+        <div class="mat-grid-list-text"> <b> Regional KOL </b> </div>
       </mat-grid-tile-header>
     </mat-grid-tile>
     <mat-grid-tile>
@@ -282,7 +282,7 @@
 
     <mat-grid-tile>
       <mat-grid-tile-header>
-        <div class="mat-grid-list-text"> <b> Non-KOL </b> </div>
+        <div class="mat-grid-list-text"> <b> Non-KOL/Local-KOL </b> </div>
       </mat-grid-tile-header>
     </mat-grid-tile>
     <mat-grid-tile>

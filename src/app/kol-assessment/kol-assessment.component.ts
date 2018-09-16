@@ -3,6 +3,8 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { startWith, map } from 'rxjs/operators';
 import { AuthorizationService } from '../authorization.service';
+import { MatDialog } from "@angular/material";
+import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
 import * as _ from 'lodash';
 
 @Component({
@@ -19,6 +21,7 @@ export class KolAssessmentComponent implements OnInit {
   specialtyCtrl: FormControl = new FormControl();
   filteredSpecialties: Observable<any[]>;
   specialties: any[];
+  selectedSpecialty: number = 0;
   moreThanOneAssociation: boolean = false;;
   regularParticipation: boolean = false;
   currentAffiliation: boolean = false;
@@ -106,7 +109,7 @@ export class KolAssessmentComponent implements OnInit {
   };
   statures: any = []
 
-  constructor(private dataService: AuthorizationService) {
+  constructor(private dataService: AuthorizationService, private dialog: MatDialog) {
     this.dataService.specialtyDataSource.asObservable().subscribe(message => this.specialties = message);
     this.dataService.statureDataSource.asObservable().subscribe(message => this.statures = message);
   }
@@ -159,6 +162,22 @@ export class KolAssessmentComponent implements OnInit {
   }
 
   sendKOL() {
-    this.dataService.updateKOL(this.statures.filter((val) => { return val.minVal <= this.getTotalScore() }).pop().consensus);
+    this.dataService.updateKOL(this.statures.filter((val) => { return val.minVal <= this.getTotalScore() }).pop().consensus,
+    this.specialtyCtrl.value);
+    this.openDialog();
+  }
+
+  openDialog() {
+    this.dialog.open(CustomDialogComponent, {
+      autoFocus: true,
+      width: '600px',
+      height: '200px',
+      disableClose: true,
+      data: {
+        header: 'KOL Assessment',
+        content: 'KOL Assessment was sent to the FMV Calculation worksheet. Proceed to the FMV Calculator by clicking here on the navigation bar on the left.',
+        openSelf: false
+      }
+    });
   }
 }

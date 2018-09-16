@@ -6,6 +6,7 @@ import { UserInfo } from './user-info';
 @Injectable()
 export class AuthorizationService {
   private loggedIn = new BehaviorSubject<boolean>(false);
+  public firstLoad = new BehaviorSubject<boolean>(true);
   public jsonDataSource = new BehaviorSubject<string>("");
   public activityDataSource = new BehaviorSubject<any[]>([]);
   public segmentDataSource = new BehaviorSubject<any[]>([]);
@@ -14,6 +15,7 @@ export class AuthorizationService {
   public travelDistanceDataSource = new BehaviorSubject<any[]>([]);
 
   public kolAssessmentVal = new BehaviorSubject<number>(0);
+  public kolAssessmentSpecialtyVal = new BehaviorSubject<any>({});
   public selectedCountry = new BehaviorSubject<string>("");
 
   get isLoggedIn() {
@@ -45,8 +47,9 @@ export class AuthorizationService {
     this.travelDistanceDataSource.next(travelDistanceDataSource);
   }
 
-  updateKOL(kolValue: number) {
+  updateKOL(kolValue: number, kolSpecialtyVal: any) {
     this.kolAssessmentVal.next(kolValue);
+    this.kolAssessmentSpecialtyVal.next(kolSpecialtyVal);
   }
 
 }

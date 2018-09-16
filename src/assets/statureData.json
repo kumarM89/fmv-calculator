@@ -1,10 +1,10 @@
 [
     {
-        "name": "Non-KOL",
+        "name": "Non-KOL/Local-KOL",
         "consensus": 0.64,
         "minVal": 0
     }, {
-        "name": "Local KOL",
+        "name": "Regional KOL",
         "consensus": 1.00,
         "minVal": 5
     }, {
