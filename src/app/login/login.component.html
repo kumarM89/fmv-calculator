@@ -16,7 +16,7 @@
           </mat-error>
         </mat-input-container>
         <mat-input-container class="full-width-input">
-              <mat-select placeholder="Country" formControlName="country" [(ngModel)]="selectedCountry" required>
+              <mat-select placeholder="Country" formControlName="country" [(ngModel)]="selectedCountry" (selectionChange)="populateSegmentsAndStatures($event)" required>
                   <mat-option *ngFor="let country of countries" [value]="country">
                   {{ country }}
                   </mat-option>

@@ -30,7 +30,7 @@ export class CalculatorComponent implements OnInit {
   selectedStature: number = 0.0;
   selectedActivity = { serviceTime: 0.0, prepTime: 0.0 };
   selectedTravelDistance: number = 0.0;
-  hourlyCap: number = 5.0;
+  hourlyCap: number = 100.0;
   minRange: number = 20.0;
   maxRange: number = 20.0;
   overriddenServiceTime: number;
@@ -44,6 +44,7 @@ export class CalculatorComponent implements OnInit {
   activities: any[];
   distanceOptions: any[];
   kolAssessmentValue: number;
+  formSubmitted: boolean = false;
 
   constructor(private countryData: AuthorizationService, private dialog: MatDialog, private router: Router) {
     this.countryData.jsonDataSource.asObservable().subscribe(message => this.data = message);
@@ -72,7 +73,7 @@ export class CalculatorComponent implements OnInit {
 
   itemSelected(evt: any) {
     var specialtyMultiplier = this.segments.filter(segment =>
-      segment.id === evt.option.value.segmentID);
+      segment.id == evt.option.value.segmentID);
     this.specialtyMultiplier = specialtyMultiplier[0].consensus;
   }
 
@@ -86,7 +87,7 @@ export class CalculatorComponent implements OnInit {
     this.countryData.kolAssessmentSpecialtyVal.asObservable().subscribe(message => {
       this.specialtyCtrl.setValue(message);
       var specialtyMultiplier = this.segments.filter(segment =>
-        segment.id === message.segmentID);
+        segment.id == message.segmentID);
       this.specialtyMultiplier = specialtyMultiplier[0].consensus;
     });
   }
@@ -94,6 +95,10 @@ export class CalculatorComponent implements OnInit {
   clearSelection() {
     this.specialtyCtrl.reset('');
     this.specialtyMultiplier = 0;
+  }
+
+  calculate() {
+      this.formSubmitted = true;
   }
 
   initializeCalculator() {

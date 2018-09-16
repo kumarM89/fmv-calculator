@@ -1,18 +1,972 @@
 [
-    {
-        "name": "Abdominal / Digestive  Surgery",
-        "segmentID": 3 
-    }, {
-        "name": "Abdominal Radiology",
-        "segmentID": 2
-    }, {
-        "name": "Accident & Emergency",
-        "segmentID": 6
-    }, {
-        "name": "Acupuncture",
-        "segmentID": 1
-    }, {
-        "name": "Acute Medicine",
-        "segmentID": 3
-    }
+	{
+		"name": "Allergy/Immunology",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Anesthesiology",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Anesthesiology: Pain Management",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Bariatrics (Nonsurgical)",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Cardiology: Electrophysiology",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Cardiology: Invasive",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Cardiology: Invasive-Interventional",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Cardiology: Noninvasive",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Critical Care: Intensivist",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Dentistry",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Dermatology",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Dermatology: Dermatopathology",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Dermatology: Mohs Surgery",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Emergency Medicine",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Endocrinology/Metabolism",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Family Medicine (with OB)",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Family Medicine (without OB)",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Family Medicine: Ambulatory Only (No Inpatient Work)",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Family Medicine: Sports Medicine",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Family Medicine: Urgent Care",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Gastroenterology",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Gastroenterology: Hepatology",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Geriatrics",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Hematology/Oncology",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Hematology/Oncology: Oncology (Only)",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Hospice/Palliative Care",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Hospitalist: Family Medicine",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Hospitalist: Internal Medicine",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Hospitalist: OB/GYN",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Hyperbaric Medicine/Wound Care",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Infectious Disease",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Internal Medicine: Ambulatory Only (No Inpatient Work)",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Internal Medicine: General",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Nephrology",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Neurology",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Neurology: Epilepsy/EEG",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Neurology: Neuromuscular",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Neurology: Stroke Medicine",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "OB/GYN: Gynecological Oncology",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "OB/GYN: Gynecology (Only)",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "OB/GYN: Maternal and Fetal Medicine",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "OB/GYN: Reproductive Endocrinology",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "OB/GYN: Urogynecology",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Obstetrics/Gynecology: General",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Occupational Medicine",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Ophthalmology",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Ophthalmology: Corneal and Refractive Surgery",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Ophthalmology: Retina",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Orthopedic (Nonsurgical)",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Orthopedic Surgery: Foot and Ankle",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Orthopedic Surgery: General",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Orthopedic Surgery: Hand",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Orthopedic Surgery: Hip and Joint",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Orthopedic Surgery: Oncology",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Orthopedic Surgery: Shoulder/Elbow",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Orthopedic Surgery: Spine",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Orthopedic Surgery: Sports Medicine",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Orthopedic Surgery: Trauma",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Otorhinolaryngology",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Pain Management: Nonanesthesia",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Pathology: Anatomic",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Pathology: Anatomic and Clinical",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Pathology: Clinical",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Pathology: Clinical-Transfusion Medicine",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Adolescent Medicine",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Allergy/Immunology",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Anesthesiology",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Cardiology",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Cardiovascular Surgery",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Child Development",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Critical Care/Intensivist",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Emergency Medicine",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Endocrinology",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Gastroenterology",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: General",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Genetics",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Hematology/Oncology",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Hospitalist",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Hospitalist-Internal Medicine",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Infectious Disease",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Internal Medicine",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Neonatal Medicine",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Nephrology",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Neurology",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Neurosurgery",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Ophthalmology",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Orthopedic Surgery",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Otorhinolaryngology",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Pulmonology",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Radiology",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Rheumatology",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Surgery",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Urgent Care",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pediatrics: Urology",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Physiatry (Physical Medicine and Rehabilitation)",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Podiatry: General",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Podiatry: Surgery-Foot and Ankle",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Psychiatry: Addiction Medicine",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Psychiatry: Child and Adolescent",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Psychiatry: General",
+		"segmentID": "3",
+		"type": "Physician"
+	},
+	{
+		"name": "Psychiatry: Geriatric",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Pulmonary Medicine: Critical Care",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Pulmonary Medicine: General",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Pulmonary Medicine: General and Critical Care",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Radiation Oncology",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Radiology: Diagnostic",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Radiology: Interventional",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Radiology: Neurological",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Radiology: Nuclear Medicine",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Rheumatology",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Sleep Medicine",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Bariatric",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Breast",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Cardiovascular",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Colon and Rectal",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: General",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Neurological",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Oncology",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Oral",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Plastic and Reconstruction",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Plastic and Reconstruction-Hand",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Thoracic (Primary)",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Transplant",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Transplant-Heart",
+		"segmentID": "6",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Transplant-Kidney",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Trauma",
+		"segmentID": "4",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Trauma-Burn",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Surgery: Vascular (Primary)",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Urgent Care",
+		"segmentID": "2",
+		"type": "Physician"
+	},
+	{
+		"name": "Urology",
+		"segmentID": "5",
+		"type": "Physician"
+	},
+	{
+		"name": "Anesthesia Assistant",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Audiologist",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Certified Registered Nurse Anesthetist",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Chiropractor",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Dietician/Nutritionist",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Genetics",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Acute Care",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Adult",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Cardiology",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Emergency Medicine",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Endocrinology",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Family Medicine (with OB)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Family Medicine (without OB)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Gastroenterology",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Gerontology/Elder Health",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Hematology/Oncology",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Hospitalist",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Internal Medicine",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Neonatal/Perinatal",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Neurology",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Neurosurgery",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: OB/GYN/Women's Health",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Orthopedics",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Pediatric/Child Health",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Psychiatry",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Pulmonary Medicine",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Urgent Care",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "NP: Urology",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Nurse Midwife: Inpatient (Only)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Nurse Midwife: Outpatient (Only)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Nurse Midwife: Outpatient/Inpatient Deliveries",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Nurse Practitioner (Nonsurgical/Nonprimary Care)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Nurse Practitioner (Primary Care)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Nurse Practitioner (Surgical)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Occupational Therapist",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Optometrist",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Cardiology",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Cardiothoracic Surgery",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Dermatology",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Emergency Medicine",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Family Medicine (with OB)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Family Medicine (without OB)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Gastroenterology",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Hospitalist",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Hospitalist (Nonsurgical/Nonprimary Care)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Internal Medicine",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Neurology",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Neurosurgery",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: OB/GYN/Women's Health",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Orthopedic (Nonsurgical/Nonprimary Care)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Orthopedic (Surgical)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Pediatric",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Pulmonary Medicine",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Surgery: General",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Urgent Care (Nonsurgical/Nonprimary Care)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Urgent Care (Primary Care)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PA: Urology",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Perfusionist",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "PhD",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Physical Therapist",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Physician Assistant (Nonsurgical/Nonprimary Care)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Physician Assistant (Primary Care)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Physician Assistant (Surgical)",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	},
+	{
+		"name": "Psychologist",
+		"segmentID": "1",
+		"type": "Non-Physician"
+	}
 ]

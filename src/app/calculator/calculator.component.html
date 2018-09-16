@@ -115,11 +115,14 @@
       <mat-grid-tile *ngIf="isRoundTrip">
         Corresponds to {{selectedTravelDistance * 2}} hours for a round trip
       </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button color="warn" (click)="calculate()">Calculate</button>
+      </mat-grid-tile>
     </mat-grid-list>
   </mat-expansion-panel>
 </mat-card>
 
-<mat-expansion-panel *ngIf='specialtyCtrl.value' [expanded]="true">
+<mat-expansion-panel *ngIf='formSubmitted == true' [expanded]="true">
   <mat-expansion-panel-header>
     <mat-panel-title>
       Calculation Details:
@@ -132,9 +135,9 @@
     <mat-grid-tile> <input matInput [value]="getTotalTime()" disabled /> </mat-grid-tile>
 
     <mat-grid-tile> Base rate (in local currency) </mat-grid-tile>
-    <mat-grid-tile> <input matInput [(value)]="baseRate" disabled /> </mat-grid-tile>
-    <mat-grid-tile> Hourly Cap (hrs) </mat-grid-tile>
-    <mat-grid-tile> <input matInput [(ngModel)]="hourlyCap" disabled /> </mat-grid-tile>
+    <mat-grid-tile colspan="3"> <input matInput [(value)]="baseRate" disabled /> </mat-grid-tile>
+    <!-- <mat-grid-tile> Hourly Cap (hrs) </mat-grid-tile>
+    <mat-grid-tile> <input matInput [(ngModel)]="hourlyCap" disabled /> </mat-grid-tile> -->
 
     <mat-grid-tile> Service Time (hrs) </mat-grid-tile>
     <mat-grid-tile> <input matInput [(value)]="overriddenServiceTime ? overriddenServiceTime : selectedActivity.serviceTime"
@@ -177,10 +180,10 @@
     <mat-grid-tile colspan="2"></mat-grid-tile>
 
     <mat-grid-tile> FMV rate per hour range ({{baseCurrency}}) </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="getMinVal()" disabled /> </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="getMinVal() | number:'1.0-1'" disabled /> </mat-grid-tile>
     <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature" disabled />
     </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal()" disabled /> </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() | number:'1.0-1'" disabled /> </mat-grid-tile>
   </mat-grid-list>
   <mat-divider></mat-divider>
   <mat-grid-list cols="4" rowHeight="50px">
@@ -190,41 +193,41 @@
     <mat-grid-tile> Maximum fee </mat-grid-tile>
 
     <mat-grid-tile> Travel Time ({{travelDistanceCalc}} hours) </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * travelDistanceCalc" disabled />
+    <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * travelDistanceCalc | number:'1.0-1'" disabled />
     </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * travelDistanceCalc"
+    <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * travelDistanceCalc | number:'1.0-1'"
         disabled /> </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * travelDistanceCalc" disabled />
+    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * travelDistanceCalc | number:'1.0-1'" disabled />
     </mat-grid-tile>
 
     <mat-grid-tile> Service Time ({{serviceTimeCalc}} hours) </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * serviceTimeCalc" disabled /> </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * serviceTimeCalc"
+    <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * serviceTimeCalc | number:'1.0-1'" disabled /> </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * serviceTimeCalc | number:'1.0-1'"
         disabled /> </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * serviceTimeCalc" disabled /> </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * serviceTimeCalc | number:'1.0-1'" disabled /> </mat-grid-tile>
 
     <mat-grid-tile> Prep Time ({{prepTimeCalc}} hours) </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * prepTimeCalc" disabled /> </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * prepTimeCalc"
+    <mat-grid-tile class="center"> <input matInput [value]="getMinVal() * prepTimeCalc | number:'1.0-1'" disabled /> </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="baseRate * specialtyMultiplier * selectedStature * prepTimeCalc | number:'1.0-1'"
         disabled /> </mat-grid-tile>
-    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * prepTimeCalc" disabled /> </mat-grid-tile>
+    <mat-grid-tile class="center"> <input matInput [value]="getMaxVal() * prepTimeCalc | number:'1.0-1'" disabled /> </mat-grid-tile>
 
     <mat-grid-tile> Total Cost </mat-grid-tile>
     <mat-grid-tile class="center">
       <mat-grid-tile-header>
-        <div class="mat-grid-list-text"> <b> {{ getMinVal() * (travelDistanceCalc + serviceTimeCalc + prepTimeCalc) }}
+        <div class="mat-grid-list-text"> <b> {{ getMinVal() * (travelDistanceCalc + serviceTimeCalc + prepTimeCalc) | number:'1.0-1' }}
           </b> </div>
       </mat-grid-tile-header>
     </mat-grid-tile>
     <mat-grid-tile class="center">
       <mat-grid-tile-header>
         <div class="mat-grid-list-text"> <b> {{ baseRate * specialtyMultiplier * selectedStature * (travelDistanceCalc
-            + serviceTimeCalc + prepTimeCalc) }} </b> </div>
+            + serviceTimeCalc + prepTimeCalc)  | number:'1.0-1'}} </b> </div>
       </mat-grid-tile-header>
     </mat-grid-tile>
     <mat-grid-tile class="center">
       <mat-grid-tile-header>
-        <div class="mat-grid-list-text"> <b> {{ getMaxVal() * (travelDistanceCalc + serviceTimeCalc + prepTimeCalc) }}
+        <div class="mat-grid-list-text"> <b> {{ getMaxVal() * (travelDistanceCalc + serviceTimeCalc + prepTimeCalc) | number:'1.0-1' }}
           </b> </div>
       </mat-grid-tile-header>
     </mat-grid-tile>

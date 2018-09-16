@@ -51,20 +51,24 @@ export class LoginComponent implements OnInit {
   loadNavItems() {
     let countryQuery = this.http.get('/assets/countryData.json');
     let activityQuery = this.http.get('/assets/activityData.json');
-    let segmentsQuery = this.http.get('/assets/segmentsData.json');
+    //let segmentsQuery = this.http.get('/assets/segmentsData.json');
     let specialtyQuery = this.http.get('/assets/specialtyData.json');
-    let statureQuery = this.http.get('/assets/statureData.json');
+    //let statureQuery = this.http.get('/assets/statureData.json');
     let travelDistanceQuery = this.http.get('/assets/travelDistanceData.json');
 
-    forkJoin([countryQuery, activityQuery, segmentsQuery, specialtyQuery, statureQuery, travelDistanceQuery]).subscribe(results => {
+    forkJoin([countryQuery, activityQuery, specialtyQuery, travelDistanceQuery]).subscribe(results => {
       this.navItems = results[0].json();
       this.countries = this.navItems.map(item => item.country);
-
       this.activities = results[1].json() as Array<any>;
-      this.segments = results[2].json() as Array<any>;
-      this.specialties = results[3].json() as Array<any>;
-      this.statures = results[4].json() as Array<any>;
-      this.travelDistances = results[5].json() as Array<any>;
+      //this.segments = results[0]['segments'].json() as Array<any>;
+      this.specialties = results[2].json() as Array<any>;
+      //this.statures = results[0]['statures'].json() as Array<any>;
+      this.travelDistances = results[3].json() as Array<any>;
     });
+  }
+
+  populateSegmentsAndStatures(evt: any) {
+    this.segments = this.navItems.filter(item => item.country === evt.source.value)[0].segments;
+    this.statures = this.navItems.filter(item => item.country === evt.source.value)[0].statures;
   }
 }
