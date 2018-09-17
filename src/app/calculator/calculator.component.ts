@@ -44,6 +44,7 @@ export class CalculatorComponent implements OnInit {
   activities: any[];
   distanceOptions: any[];
   kolAssessmentValue: number;
+  upperLimitFMV: number = 0.0;
   formSubmitted: boolean = false;
 
   constructor(private countryData: AuthorizationService, private dialog: MatDialog, private router: Router) {
