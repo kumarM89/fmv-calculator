@@ -33,7 +33,7 @@ export class InputFormComponent implements OnInit {
       ratePerHourCap: ['', Validators.required],
       sessionCap: ['', Validators.required]
     });
-    if(this.data != null) {
+    if (this.data != null) {
       this.populateFormControls();
     }
     this.getRecords();
@@ -51,10 +51,10 @@ export class InputFormComponent implements OnInit {
   }
 
   updateVals() {
-    var filteredData = this.data.filter(item => item.country == this.selectedCountry)[0].data;
+    const filteredData = this.data.filter(item => item.country === this.selectedCountry)[0].data;
     this.baseCurrency = filteredData.baseCurrency;
     this.baseRate = filteredData.baseRate;
-    this.ratePerHourCap = filteredData.ratePerHourCap
+    this.ratePerHourCap = filteredData.ratePerHourCap;
     this.sessionCap = filteredData.sessionCap;
   }
 

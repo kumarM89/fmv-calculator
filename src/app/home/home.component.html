@@ -1,13 +1,23 @@
-<mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true"
+<!-- <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true"
 (closed)="panelOpenState = false">
   <mat-expansion-panel-header>
     <mat-panel-title>
       FMV Calculator 
     </mat-panel-title>
     <mat-panel-description>
-      <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
-      Welcome to the FMV Calculator. Please review the ground rules below and use the icons on the left to start your FMV calculation.
+
+      Welcome to the EY FMV Calculator Demo. Please review the ground rules and begin your HCP Engagement using the Icons on the left.
     </mat-panel-description>
   </mat-expansion-panel-header>
-  <!-- <app-xlsx-file-upload (uploadedXls)="xlsxUploaded($event)"> {{ message | async }} </app-xlsx-file-upload> -->
-</mat-expansion-panel>
+  <app-xlsx-file-upload (uploadedXls)="xlsxUploaded($event)"> {{ message | async }} </app-xlsx-file-upload>
+</mat-expansion-panel> -->
+
+
+<mat-card>
+  <mat-card-title>
+    FMV Calculator
+  </mat-card-title>
+  <mat-card-content>
+    Welcome to the EY FMV Calculator Demo. Please review the ground rules and begin your HCP Engagement using the Icons on the left.
+  </mat-card-content>
+</mat-card>
